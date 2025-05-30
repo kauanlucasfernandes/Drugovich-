@@ -1,0 +1,972 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Prevenção de Doenças</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      color: white;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      background-image: url(imagem.jpg);
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+
+    }
+
+    header {
+      background-color: rgba(255, 255, 255, 0.884);
+      padding: 25px 0;
+      text-align: center;
+      border-bottom: 4px solid #0004ff;
+      margin-bottom: 40px;
+      box-shadow: 0 4px 10px rgba(0, 255, 213, 0.3);
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 48px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #2600ff;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: auto;
+      padding: 40px;
+      background-color: rgba(0, 0, 0, 0.65);
+      border-radius: 20px;
+    }
+
+    .filtros {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 40px;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    input[type="text"],
+    select {
+      flex: 1;
+      padding: 12px 15px;
+      font-size: 18px;
+      border-radius: 10px;
+      border: none;
+      outline: none;
+      font-weight: 600;
+    }
+
+    .doenca {
+      margin-bottom: 25px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      padding: 15px;
+      border-radius: 15px;
+      background-color: rgba(0, 0, 0, 0.3);
+    }
+
+    .doenca:hover {
+      background-color: rgba(0, 255, 213, 0.15);
+    }
+
+    .doenca h2 {
+      display: flex;
+      align-items: center;
+      font-size: 24px;
+      margin: 0;
+      transition: color 0.3s ease;
+    }
+
+    .doenca:hover h2 {
+      color: #00c3ff;
+    }
+
+    .doenca span.icone {
+      margin-right: 12px;
+      font-size: 26px;
+    }
+
+    .recomendacoes {
+      display: none;
+      margin-top: 12px;
+      margin-left: 40px;
+      font-size: 18px;
+      line-height: 1.5;
+    }
+
+    ul {
+      list-style: disc;
+      padding-left: 25px;
+      margin: 0;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>Prevenção de Doenças Comuns</h1>
+  </header>
+
+  <div class="container">
+
+    <div class="filtros">
+      <input type="text" id="busca" placeholder="Buscar doença..." oninput="filtrarDoencas()" />
+      <select id="filtroCategoria" onchange="filtrarDoencas()">
+        <option value="todas">Todas as categorias</option>
+        <option value="infecciosas">Infecciosas</option>
+        <option value="cronicas">Crônicas</option>
+        <option value="mental">Saúde Mental</option>
+        <option value="outras">Outras</option>
+      </select>
+    </div>
+
+    <div class="doenca" data-nome="Gripe" data-categoria="infecciosas" onclick="toggleRecomendacoes(this)">
+      <h2><span class="icone">💉</span>Gripe</h2>
+      <div class="recomendacoes">
+        <ul>
+          <li>Vacinação anual</li>
+          <li>Lavar as mãos frequentemente</li>
+          <li>Evitar contato com pessoas doentes</li>
+          <li>Usar máscara em ambientes fechados durante surtos</li>
+          <li>Manter ambientes ventilados</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="doenca" data-nome="Covid-19" data-categoria="infecciosas" onclick="toggleRecomendacoes(this)">
+      <h2><span class="icone">🫁</span>Covid-19</h2>
+      <div class="recomendacoes">
+        <ul>
+          <li>Vacinação completa</li>
+          <li>Usar máscara em locais fechados</li>
+          <li>Evitar aglomerações</li>
+          <li>Manter ambientes ventilados</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="doenca" data-nome="Tuberculose" data-categoria="infecciosas" onclick="toggleRecomendacoes(this)">
+      <h2><span class="icone">🧪</span>Tuberculose</h2>
+      <div class="recomendacoes">
+        <ul>
+          <li>Vacina BCG</li>
+          <li>Diagnóstico precoce</li>
+          <li>Ambientes arejados</li>
+          <li>Completar tratamento adequado</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="doenca" data-nome="Hepatite B" data-categoria="infecciosas" onclick="toggleRecomendacoes(this)">
+      <h2><span class="icone">🧬</span>Hepatite B</h2>
+      <div class="recomendacoes">
+        <ul>
+          <li>Vacinação</li>
+          <li>Uso de preservativos</li>
+          <li>Evitar compartilhamento de seringas</li>
+          <li>Higiene adequada</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="doenca" data-nome="HIV/AIDS" data-categoria="infecciosas" onclick="toggleRecomendacoes(this)">
+      <h2><span class="icone">🦠</span>HIV/AIDS</h2>
+      <div class="recomendacoes">
+        <ul>
+          <li>Uso de preservativos</li>
+          <li>Não compartilhar agulhas</li>
+          <li>Testagem regular</li>
+          <li>Tratamento antirretroviral</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="doenca" data-nome="Dengue" data-categoria="infecciosas" onclick="toggleRecomendacoes(this)">
+      <h2><span class="icone">🦟</span>Dengue</h2>
+      <div class="recomendacoes">
+        <ul>
+          <li>Eliminar criadouros do mosquito</li>
+          <li>Usar repelentes</li>
+          <li>Manter portas e janelas fechadas ou com telas</li>
+          <li>Evitar água parada</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="doenca" data-nome="Zika Vírus" data-categoria="infecciosas" onclick="toggleRecomendacoes(this)">
+      <h2><span class="icone">🦠</span>Zika Vírus</h2>
+      <div class="recomendacoes">
+        <ul>
+          <li>Prevenção contra mosquito Aedes aegypti</li>
+          <li>Uso de repelentes</li>
+          <li>Evitar água parada</li>
+          <li>Cuidados especiais para gestantes</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="doenca" data-nome="Febre Amarela" data-categoria="infecciosas" onclick="toggleRecomendacoes(this)">
+      <h2><span class="icone">🐒</span>Febre Amarela</h2>
+      <div class="recomendacoes">
+        <ul>
+          <li>Vacinação</li>
+          <li>Evitar áreas de risco sem proteção</li>
+          <li>Usar repelentes</li>
+          <li>Consultar sempre o calendário vacinal</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="doenca" data-nome="Sarampo" data-categoria="infecciosas" onclick="toggleRecomendacoes(this)">
+      <h2><span class="icone">🤧</span>Sarampo</h2>
+      <div class="recomendacoes">
+        <ul>
+          <li>Vacinação</li>
+          <li>Evitar contato com pessoas infectadas</li>
+          <li>Manter higiene das mãos</li>
+          <li>Isolamento em caso de suspeita</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="doenca" data-nome="Catapora" data-categoria="infecciosas" onclick="toggleRecomendacoes(this)">
+      <h2><span class="icone">🌡️</span>Catapora</h2>
+      <div class="recomendacoes">
+        <ul>
+          <li>Vacinação</li>
+          <li>Isolamento durante o período contagioso</li>
+          <li>Manter boa higiene</li>
+          <li>Evitar coçar as lesões</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- CRÔNICAS -->
+    <div class="doenca" data-nome="Hipertensão" data-categoria="cronicas" onclick="toggleRecomendacoes(this)">
+      <h2><span class="icone">❤️</span>Hipertensão</h2>
+      <div class="recomendacoes">
+        <ul>
+          <li>Reduzir consumo de sal</li>
+          <li>Praticar exercícios físicos</li>
+          <li>Evitar estresse</li>
+          <li>Consultar médico regularmente</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="doenca" data-nome="Diabetes tipo 2" data-categoria="cronicas" onclick="toggleRecomendacoes(this)">
+      <h2><span class="icone">🍭</span>Diabetes tipo 2</h2>
+      <div class="recomendacoes">
+        <ul>
+          <li>Alimentação saudável</li>
+          <li>Controle do peso</li>
+          <li>Atividade física regular</li>
+          <li>Monitorar glicemia</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="doenca" data-nome="Obesidade" data-categoria="cronicas" onclick="toggleRecomendacoes(this)">
+      <h2><span class="icone">⚖️</span>Obesidade</h2>
+      <div class="recomendacoes">
+        <ul>
+          <li>Alimentação balanceada</li>
+          <li>Prática regular de exercícios</li>
+          <li>Controle do estresse</li>
+          <li>Acompanhamento nutricional</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="doenca" data-nome="Asma" data-categoria="cronicas" onclick="toggleRecomendacoes(this)">
+      <h2><span class="icone">🌬️</span>Asma</h2>
+      <div class="recomendacoes">
+        <ul>
+          <li>Evitar alérgenos</li>
+          <li>Ambientes ventilados</li>
+          <li>Uso de inaladores conforme prescrição</li>
+          <li>Acompanhamento médico regular</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="doenca" data-nome="Doença Pulmonar Obstrutiva Crônica (DPOC)" data-categoria="cronicas"
+      onclick="toggleRecomendacoes(this)">
+      <h2><span class="icone">🫁</span>DPOC</h2>
+      <div class="recomendacoes">
+        <ul>
+          <li>Não fumar</li>
+          <li>Evitar exposição a poluentes</li>
+          <li>Praticar exercícios respiratórios</li>
+          <li>Consultar médico regularmente</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="doenca" data-nome="Artrite Reumatoide" data-categoria="cronicas" onclick="toggleRecomendacoes(this)">
+      <h2><span class="icone">🦴</span>Artrite Reumatoide</h2>
+      <div class="recomendacoes">
+        <ul>
+          <li>Controle de sintomas com medicamentos</li>
+          <li>Fisioterapia</li>
+          <li>Prática de exercícios adequados</li>
+          <li>Acompanhamento médico</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="doenca" data-nome="Osteoporose" data-categoria="cronicas" onclick="toggleRecomendacoes(this)">
+      <h2><span class="icone">🦴</span>Osteoporose</h2>
+      <div class="recomendacoes">
+        <ul>
+          <li>Ingestão adequada de cálcio e vitamina D</li>
+          <li>Exercícios de impacto moderado</li>
+          <li>Evitar quedas</li>
+          <li>Acompanhamento médico</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="doenca" data-nome="Câncer de Mama" data-categoria="cronicas" onclick="toggleRecomendacoes(this)">
+      <h2><span class="icone">🎗️</span>Câncer de Mama</h2>
+      <div class="recomendacoes">
+        <ul>
+          <li>Autoexame</li>
+          <li>Exames periódicos (mamografia)</li>
+          <li>Manter peso saudável</li>
+          <li>Evitar tabaco e álcool</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="doenca" data-nome="Câncer de Próstata" data-categoria="cronicas" onclick="toggleRecomendacoes(this)">
+      <h2><span class="icone">🎗️</span>Câncer de Próstata</h2>
+      <div class="recomendacoes">
+        <ul>
+          <li>Exames regulares</li>
+          <li>Manter alimentação saudável</li>
+          <li>Prática regular de exercícios</li>
+          <li>Consultar médico para avaliação</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- SAÚDE MENTAL -->
+    <div class="doenca" data-nome="Depressão" data-categoria="mental" onclick="toggleRecomendacoes(this)">
+      <h2><span class="icone">🧠</span>Depressão</h2>
+      <div class="recomendacoes">
+        <ul>
+          <li>Acompanhamento psicológico</li>
+          <li>Atividades prazerosas</li>
+          <li>Rede de apoio</li>
+          <li>Exercícios físicos regulares</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="doenca" data-nome="Ansiedade" data-categoria="mental" onclick="toggleRecomendacoes(this)">
+      <h2><span class="icone">😰</span>Ansiedade</h2>
+      <div class="recomendacoes">
+        <ul>
+          <li>Práticas de relaxamento</li>
+          <li>Atividades físicas</li>
+          <li>Apoio psicológico</li>
+          <li>Controle do estresse</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="doenca" data-nome="Transtorno Bipolar" data-categoria="mental" onclick="toggleRecomendacoes(this)">
+      <h2><span class="icone">⚖️</span>Transtorno Bipolar</h2>
+      <div class="recomendacoes">
+        <ul>
+          <li>Tratamento medicamentoso</li>
+          <li>Acompanhamento psicológico</li>
+          <li>Manter rotina estável</li>
+          <li>Evitar álcool e drogas</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="doenca" data-nome="Esquizofrenia" data-categoria="mental" onclick="toggleRecomendacoes(this)">
+      <h2><span class="icone">🧩</span>Esquizofrenia</h2>
+      <div class="recomendacoes">
+        <ul>
+          <li>Tratamento medicamentoso</li>
+          <li>Apoio social</li>
+          <li>Acompanhamento psiquiátrico</li>
+          <li>Evitar isolamento</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="doenca" data-nome="Transtorno Obsessivo-Compulsivo (TOC)" data-categoria="mental"
+      onclick="toggleRecomendacoes(this)">
+      <h2><span class="icone">🔄</span>TOC</h2>
+      <div class="recomendacoes">
+        <ul>
+          <li>Terapia cognitivo-comportamental</li>
+          <li>Medicamentos conforme prescrição</li>
+          <li>Suporte familiar</li>
+          <li>Manter rotina terapêutica</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- OUTRAS -->
+    <div class="doenca" data-nome="Alergias" data-categoria="outras" onclick="toggleRecomendacoes(this)">
+      <h2><span class="icone">🤧</span>Alergias</h2>
+      <div class="recomendacoes">
+        <ul>
+          <li>Evitar contato com alérgenos</li>
+          <li>Uso de anti-histamínicos</li>
+          <li>Consultar alergologista</li>
+          <li>Manter ambiente limpo</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="doenca" data-nome="Enxaqueca" data-categoria="outras" onclick="toggleRecomendacoes(this)">
+      <h2><span class="icone">🤕</span>Enxaqueca</h2>
+      <div class="recomendacoes">
+        <ul>
+          <li>Identificar e evitar gatilhos</li>
+          <li>Uso de medicamentos conforme prescrição</li>
+          <li>Manter rotina de sono</li>
+          <li>Reduzir estresse</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="doenca" data-nome="Insônia" data-categoria="outras" onclick="toggleRecomendacoes(this)">
+      <h2><span class="icone">🌙</span>Insônia</h2>
+      <div class="recomendacoes">
+        <ul>
+          <li>Higiene do sono</li>
+          <li>Evitar estimulantes à noite</li>
+          <li>Ambiente calmo e escuro</li>
+          <li>Consultar especialista se persistente</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="doenca" data-nome="Doença Renal Crônica" data-categoria="cronicas" onclick="toggleRecomendacoes(this)">
+      <h2><span class="icone">💧</span>Doença Renal Crônica</h2>
+      <div class="recomendacoes">
+        <ul>
+          <li>Controle da pressão arterial</li>
+          <li>Controle glicêmico</li>
+          <li>Evitar uso prolongado de medicamentos nefrotóxicos</li>
+          <li>Consulta regular com nefrologista</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="doenca" data-nome="Anemia" data-categoria="outras" onclick="toggleRecomendacoes(this)">
+      <h2><span class="icone">🩸</span>Anemia</h2>
+      <div class="recomendacoes">
+        <ul>
+          <li>Alimentação rica em ferro</li>
+          <li>Suplementação quando indicada</li>
+          <li>Consulta médica para diagnóstico</li>
+          <li>Acompanhamento regular</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="doenca" data-nome="Hipotireoidismo" data-categoria="cronicas" onclick="toggleRecomendacoes(this)">
+      <h2><span class="icone">🦋</span>Hipotireoidismo</h2>
+      <div class="recomendacoes">
+        <ul>
+          <li>Uso regular de medicação</li>
+          <li>Acompanhamento médico</li>
+          <li>Exames periódicos</li>
+          <li>Alimentação balanceada</li>
+        </ul>
+      </div>
+    </div>
+    <!-- INFECCIOSAS (mais 9) -->
+    <div class="doenca" data-nome="Catapora" data-categoria="infecciosas" onclick="toggleRecomendacoes(this)">
+      <h2><span class="icone">🌡️</span>Catapora</h2>
+      <div class="recomendacoes">
+        <ul>
+          <li>Vacinação</li>
+          <li>Isolamento durante o período contagioso</li>
+          <li>Manter boa higiene</li>
+          <li>Evitar coçar as lesões</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="doenca" data-nome="Herpes" data-categoria="infecciosas" onclick="toggleRecomendacoes(this)">
+      <h2><span class="icone">🔴</span>Herpes</h2>
+      <div class="recomendacoes">
+        <ul>
+          <li>Uso de antivirais conforme prescrição</li>
+          <li>Evitar contato direto durante surtos</li>
+          <li>Manter higiene adequada</li>
+          <li>Não compartilhar objetos pessoais</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="doenca" data-nome="Gastroenterite" data-categoria="infecciosas" onclick="toggleRecomendacoes(this)">
+      <h2><span class="icone">🤢</span>Gastroenterite</h2>
+      <div class="recomendacoes">
+        <ul>
+          <li>Higiene alimentar rigorosa</li>
+          <li>Manter hidratação</li>
+          <li>Evitar alimentos contaminados</li>
+          <li>Consultar médico se sintomas persistirem</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="doenca" data-nome="Caxumba" data-categoria="infecciosas" onclick="toggleRecomendacoes(this)">
+      <h2><span class="icone">🤒</span>Caxumba</h2>
+      <div class="recomendacoes">
+        <ul>
+          <li>Vacinação MMR</li>
+          <li>Isolamento durante fase contagiosa</li>
+          <li>Manter higiene das mãos</li>
+          <li>Evitar aglomerações durante surto</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="doenca" data-nome="Febre Tifóide" data-categoria="infecciosas" onclick="toggleRecomendacoes(this)">
+      <h2><span class="icone">🌡️</span>Febre Tifóide</h2>
+      <div class="recomendacoes">
+        <ul>
+          <li>Higiene alimentar</li>
+          <li>Evitar água e alimentos contaminados</li>
+          <li>Vacinação para áreas de risco</li>
+          <li>Consultar médico ao apresentar sintomas</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="doenca" data-nome="Cisticercose" data-categoria="infecciosas" onclick="toggleRecomendacoes(this)">
+      <h2><span class="icone">🦠</span>Cisticercose</h2>
+      <div class="recomendacoes">
+        <ul>
+          <li>Evitar consumo de carne malcozida</li>
+          <li>Higiene pessoal rigorosa</li>
+          <li>Tratamento médico adequado</li>
+          <li>Prevenção em saneamento básico</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="doenca" data-nome="Meningite" data-categoria="infecciosas" onclick="toggleRecomendacoes(this)">
+      <h2><span class="icone">🧠</span>Meningite</h2>
+      <div class="recomendacoes">
+        <ul>
+          <li>Vacinação adequada</li>
+          <li>Evitar contato próximo com infectados</li>
+          <li>Manter higiene das mãos</li>
+          <li>Consultar médico ao suspeitar</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="doenca" data-nome="Leptospirose" data-categoria="infecciosas" onclick="toggleRecomendacoes(this)">
+      <h2><span class="icone">🐭</span>Leptospirose</h2>
+      <div class="recomendacoes">
+        <ul>
+          <li>Evitar contato com água de enchentes</li>
+          <li>Manter ambientes limpos</li>
+          <li>Uso de botas e luvas em áreas de risco</li>
+          <li>Consultar médico rapidamente</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="doenca" data-nome="Pneumonia" data-categoria="infecciosas" onclick="toggleRecomendacoes(this)">
+      <h2><span class="icone">🫁</span>Pneumonia</h2>
+      <div class="recomendacoes">
+        <ul>
+          <li>Vacinação pneumocócica</li>
+          <li>Higiene respiratória</li>
+          <li>Evitar exposição ao frio e fumaça</li>
+          <li>Consultar médico para diagnóstico precoce</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="doenca" data-nome="Doença de Alzheimer" data-categoria="cronicas" onclick="toggleRecomendacoes(this)">
+      <h2><span class="icone">🧠</span>Doença de Alzheimer</h2>
+      <div class="recomendacoes">
+        <ul>
+          <li>Estimulação cognitiva</li>
+          <li>Alimentação equilibrada</li>
+          <li>Acompanhamento médico regular</li>
+          <li>Ambiente seguro e adaptado</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="doenca" data-nome="Doença de Parkinson" data-categoria="cronicas" onclick="toggleRecomendacoes(this)">
+      <h2><span class="icone">🧎‍♂️</span>Doença de Parkinson</h2>
+      <div class="recomendacoes">
+        <ul>
+          <li>Uso de medicamentos prescritos</li>
+          <li>Fisioterapia</li>
+          <li>Atividades físicas regulares</li>
+          <li>Apoio psicológico</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="doenca" data-nome="Insuficiência Cardíaca" data-categoria="cronicas"
+      onclick="toggleRecomendacoes(this)">
+      <h2><span class="icone">❤️‍🩹</span>Insuficiência Cardíaca</h2>
+      <div class="recomendacoes">
+        <ul>
+          <li>Controle rigoroso da pressão arterial</li>
+          <li>Dieta com restrição de sal</li>
+          <li>Medicação conforme prescrição</li>
+          <li>Atividades físicas recomendadas</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="doenca" data-nome="Doença Celíaca" data-categoria="cronicas" onclick="toggleRecomendacoes(this)">
+      <h2><span class="icone">🌾</span>Doença Celíaca</h2>
+      <div class="recomendacoes">
+        <ul>
+          <li>Dieta sem glúten</li>
+          <li>Monitoramento médico</li>
+          <li>Suplementação nutricional</li>
+          <li>Evitar contaminação cruzada</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="doenca" data-nome="Fibromialgia" data-categoria="cronicas" onclick="toggleRecomendacoes(this)">
+      <h2><span class="icone">💪</span>Fibromialgia</h2>
+      <div class="recomendacoes">
+        <ul>
+          <li>Tratamento multidisciplinar</li>
+          <li>Exercícios leves e regulares</li>
+          <li>Controle do estresse</li>
+          <li>Acompanhamento psicológico</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="doenca" data-nome="Doença Arterial Coronariana" data-categoria="cronicas"
+      onclick="toggleRecomendacoes(this)">
+      <h2><span class="icone">🫀</span>Doença Arterial Coronariana</h2>
+      <div class="recomendacoes">
+        <ul>
+          <li>Dieta saudável</li>
+          <li>Atividade física</li>
+          <li>Medicação conforme prescrição</li>
+          <li>Evitar tabaco e álcool</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="doenca" data-nome="Esclerose Múltipla" data-categoria="cronicas" onclick="toggleRecomendacoes(this)">
+      <h2><span class="icone">🧬</span>Esclerose Múltipla</h2>
+      <div class="recomendacoes">
+        <ul>
+          <li>Tratamento medicamentoso</li>
+          <li>Fisioterapia</li>
+          <li>Acompanhamento neurológico</li>
+          <li>Evitar fadiga</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="doenca" data-nome="Doença Pulmonar Obstrutiva Crônica (DPOC)" data-categoria="cronicas"
+      onclick="toggleRecomendacoes(this)">
+      <h2><span class="icone">🌬️</span>DPOC</h2>
+      <div class="recomendacoes">
+        <ul>
+          <li>Evitar tabaco</li>
+          <li>Uso correto de inaladores</li>
+          <li>Vacinação pneumocócica e contra gripe</li>
+          <li>Exercícios respiratórios</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="doenca" data-nome="Esquizofrenia" data-categoria="cronicas" onclick="toggleRecomendacoes(this)">
+      <h2><span class="icone">🧠</span>Esquizofrenia</h2>
+      <div class="recomendacoes">
+        <ul>
+          <li>Tratamento psiquiátrico</li>
+          <li>Uso contínuo de medicamentos</li>
+          <li>Apoio psicológico e social</li>
+          <li>Monitoramento regular</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="doenca" data-nome="Fibrose Cística" data-categoria="geneticas" onclick="toggleRecomendacoes(this)">
+      <h2><span class="icone">🫁</span>Fibrose Cística</h2>
+      <div class="recomendacoes">
+        <ul>
+          <li>Tratamento multidisciplinar</li>
+          <li>Fisioterapia respiratória</li>
+          <li>Dieta adequada</li>
+          <li>Acompanhamento pulmonar</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="doenca" data-nome="Distrofia Muscular" data-categoria="geneticas" onclick="toggleRecomendacoes(this)">
+      <h2><span class="icone">💪</span>Distrofia Muscular</h2>
+      <div class="recomendacoes">
+        <ul>
+          <li>Fisioterapia regular</li>
+          <li>Uso de aparelhos ortopédicos</li>
+          <li>Acompanhamento médico</li>
+          <li>Suporte psicológico</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="doenca" data-nome="Hemofilia" data-categoria="geneticas" onclick="toggleRecomendacoes(this)">
+      <h2><span class="icone">🩸</span>Hemofilia</h2>
+      <div class="recomendacoes">
+        <ul>
+          <li>Evitar traumas</li>
+          <li>Tratamento com fatores de coagulação</li>
+          <li>Acompanhamento hematológico</li>
+          <li>Prevenção de sangramentos</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="doenca" data-nome="Anemia Falciforme" data-categoria="geneticas" onclick="toggleRecomendacoes(this)">
+      <h2><span class="icone">🩸</span>Anemia Falciforme</h2>
+      <div class="recomendacoes">
+        <ul>
+          <li>Hidratação adequada</li>
+          <li>Uso de medicamentos preventivos</li>
+          <li>Acompanhamento hematológico</li>
+          <li>Prevenção de crises</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="doenca" data-nome="Síndrome de Marfan" data-categoria="geneticas" onclick="toggleRecomendacoes(this)">
+      <h2><span class="icone">🦴</span>Síndrome de Marfan</h2>
+      <div class="recomendacoes">
+        <ul>
+          <li>Acompanhamento cardiovascular</li>
+          <li>Controle de atividade física</li>
+          <li>Monitoramento oftalmológico</li>
+          <li>Uso de medicação conforme orientação</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="doenca" data-nome="Talasemia" data-categoria="geneticas" onclick="toggleRecomendacoes(this)">
+      <h2><span class="icone">🩸</span>Talasemia</h2>
+      <div class="recomendacoes">
+        <ul>
+          <li>Transfusões regulares</li>
+          <li>Controle do ferro</li>
+          <li>Acompanhamento hematológico</li>
+          <li>Suporte nutricional</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="doenca" data-nome="Neurofibromatose" data-categoria="geneticas" onclick="toggleRecomendacoes(this)">
+      <h2><span class="icone">🧠</span>Neurofibromatose</h2>
+      <div class="recomendacoes">
+        <ul>
+          <li>Acompanhamento neurológico</li>
+          <li>Cirurgias conforme necessidade</li>
+          <li>Monitoramento regular</li>
+          <li>Apoio psicológico</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="doenca" data-nome="Síndrome de Turner" data-categoria="geneticas" onclick="toggleRecomendacoes(this)">
+      <h2><span class="icone">👩</span>Síndrome de Turner</h2>
+      <div class="recomendacoes">
+        <ul>
+          <li>Acompanhamento endocrinológico</li>
+          <li>Tratamento hormonal</li>
+          <li>Monitoramento cardíaco</li>
+          <li>Apoio psicossocial</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="doenca" data-nome="Esclerodermia" data-categoria="autoimunes" onclick="toggleRecomendacoes(this)">
+      <h2><span class="icone">🧴</span>Esclerodermia</h2>
+      <div class="recomendacoes">
+        <ul>
+          <li>Uso de medicamentos imunossupressores</li>
+          <li>Fisioterapia para mobilidade</li>
+          <li>Monitoramento dermatológico</li>
+          <li>Acompanhamento multidisciplinar</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="doenca" data-nome="Miastenia Grave" data-categoria="autoimunes" onclick="toggleRecomendacoes(this)">
+      <h2><span class="icone">💪</span>Miastenia Grave</h2>
+      <div class="recomendacoes">
+        <ul>
+          <li>Uso de imunossupressores</li>
+          <li>Fisioterapia</li>
+          <li>Acompanhamento neurológico</li>
+          <li>Evitar fadiga</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="doenca" data-nome="Vasculite" data-categoria="autoimunes" onclick="toggleRecomendacoes(this)">
+      <h2><span class="icone">🩸</span>Vasculite</h2>
+      <div class="recomendacoes">
+        <ul>
+          <li>Tratamento com corticosteroides</li>
+          <li>Monitoramento regular</li>
+          <li>Acompanhamento clínico</li>
+          <li>Controle de sintomas</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="doenca" data-nome="Síndrome de Sjögren" data-categoria="autoimunes" onclick="toggleRecomendacoes(this)">
+      <h2><span class="icone">💧</span>Síndrome de Sjögren</h2>
+      <div class="recomendacoes">
+        <ul>
+          <li>Hidratação das mucosas</li>
+          <li>Uso de lubrificantes oculares</li>
+          <li>Tratamento imunossupressor</li>
+          <li>Acompanhamento reumatológico</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="doenca" data-nome="Dermatomiosite" data-categoria="autoimunes" onclick="toggleRecomendacoes(this)">
+      <h2><span class="icone">🧴</span>Dermatomiosite</h2>
+      <div class="recomendacoes">
+        <ul>
+          <li>Imunossupressores</li>
+          <li>Fisioterapia</li>
+          <li>Proteção solar</li>
+          <li>Acompanhamento multidisciplinar</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="doenca" data-nome="Artrite Reativa" data-categoria="autoimunes" onclick="toggleRecomendacoes(this)">
+      <h2><span class="icone">🦴</span>Artrite Reativa</h2>
+      <div class="recomendacoes">
+        <ul>
+          <li>Uso de anti-inflamatórios</li>
+          <li>Fisioterapia</li>
+          <li>Tratamento da infecção causadora</li>
+          <li>Monitoramento médico</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="doenca" data-nome="Lúpus Cutâneo" data-categoria="autoimunes" onclick="toggleRecomendacoes(this)">
+      <h2><span class="icone">🌞</span>Lúpus Cutâneo</h2>
+      <div class="recomendacoes">
+        <ul>
+          <li>Proteção solar rigorosa</li>
+          <li>Uso de corticosteroides tópicos</li>
+          <li>Acompanhamento dermatológico</li>
+          <li>Tratamento imunossupressor</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="doenca" data-nome="Púrpura de Henoch-Schönlein" data-categoria="autoimunes"
+      onclick="toggleRecomendacoes(this)">
+      <h2><span class="icone">🩸</span>Púrpura de Henoch-Schönlein</h2>
+      <div class="recomendacoes">
+        <ul>
+          <li>Tratamento sintomático</li>
+          <li>Monitoramento renal</li>
+          <li>Acompanhamento médico</li>
+          <li>Uso de corticosteroides se necessário</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="doenca" data-nome="Síndrome Antifosfolípide" data-categoria="autoimunes"
+      onclick="toggleRecomendacoes(this)">
+      <h2><span class="icone">🩸</span>Síndrome Antifosfolípide</h2>
+      <div class="recomendacoes">
+        <ul>
+          <li>Uso de anticoagulantes</li>
+          <li>Monitoramento regular</li>
+          <li>Controle dos fatores de risco</li>
+          <li>Acompanhamento clínico contínuo</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="doenca" data-nome="Polimiosite" data-categoria="autoimunes" onclick="toggleRecomendacoes(this)">
+      <h2><span class="icone">💪</span>Polimiosite</h2>
+      <div class="recomendacoes">
+        <ul>
+          <li>Imunossupressores</li>
+          <li>Fisioterapia</li>
+          <li>Acompanhamento médico</li>
+          <li>Controle dos sintomas</li>
+        </ul>
+      </div>
+    </div>
+
+
+  </div>
+
+  <script>
+    function toggleRecomendacoes(element) {
+      const rec = element.querySelector('.recomendacoes');
+      if (rec.style.display === 'block') {
+        rec.style.display = 'none';
+      } else {
+        rec.style.display = 'block';
+      }
+    }
+
+    function filtrarDoencas() {
+      const busca = document.getElementById('busca').value.toLowerCase();
+      const categoria = document.getElementById('filtroCategoria').value;
+      const doencas = document.querySelectorAll('.doenca');
+
+      doencas.forEach(d => {
+        const nome = d.dataset.nome.toLowerCase();
+        const cat = d.dataset.categoria;
+
+        const textoCorresponde = nome.includes(busca);
+        const categoriaCorresponde = (categoria === 'todas') || (categoria === cat);
+
+        if (textoCorresponde && categoriaCorresponde) {
+          d.style.display = '';
+        } else {
+          d.style.display = 'none';
+        }
+      });
+    }
+  </script>
+
+</body>
+
+</html>
